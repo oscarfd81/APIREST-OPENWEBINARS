@@ -53,7 +53,7 @@ Para ejecutar este proyecto localmente, asegúrate de tener:
 
 ---
 
-
-
 ## 📚 Créditos
 Este proyecto ha sido desarrollado siguiendo las pautas de **OpenWebinars** bajo la instrucción de sus expertos en Java y Spring Boot.
+
+---
