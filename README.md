@@ -1,20 +1,73 @@
-<h1>Desarrollo de una API REST con Spring Boot</h1>
+# 🚀 API REST de Gestión de Tareas (To-Do List)
 
-En este repositorio se encuentra un api rest que he realizado siguiendo los pasos del curso "Desarrollo de una API REST con Spring Boot" de OpenWebinars.
+Este repositorio contiene la implementación práctica de una API REST realizada como parte del curso **"Desarrollo de una aplicación web con Spring Boot"** y, específicamente, el módulo de **"Desarrollo de una API REST con Spring Boot"** de **OpenWebinars**.
 
-Este Api rest principalmente se centra en la gestión de tareas, en especifico:
-* La creacion de tareas
-* La edicion de tareas
-* El borrado de tareas
-* La vista de tareas, tanto todas tanto cada una buscadas por su ID generado automaticamente
-También puedes crear nuevos usuarios.
+El objetivo del proyecto es gestionar tareas de forma eficiente, aplicando principios de seguridad avanzada y persistencia de datos.
 
-También se centra en otros aspectos como la seguridad de esta:
-* No todos los usuarios tienen acceso a las tareas a no ser que se encuentren en la bbdd como tal
-* Dependiendo del usuario registrado en ese momento, las tareas aparecerán al nombre de cada usuario
-* Cada usuario solo y únicamente podrá:
-   * Ver las tareas creadas por este
-   * Editar tareas creadas por este
-   * Eliminar tareas creadas por este
-     
-  En caso de que el usuario intente acceder a tareas que no hayan sido creadas por él o borrar o editar estas, se lanzará una excepción.
+---
+
+## 🛠️ Funcionalidades Principales
+
+La API permite realizar un CRUD completo sobre el recurso de tareas, incluyendo:
+
+* **Gestión de Tareas:**
+    * ➕ **Creación:** Registro de nuevas tareas con título, descripción y fecha límite.
+    * 📝 **Edición:** Modificación de tareas existentes.
+    * 🗑️ **Borrado:** Eliminación de tareas del sistema.
+    * 🔍 **Consulta:** Visualización de todas las tareas o búsqueda específica por su **ID** (generado automáticamente mediante secuencias).
+* **Gestión de Usuarios:**
+    * 👤 Registro de nuevos usuarios para interactuar con la plataforma.
+
+---
+
+## 🔐 Seguridad y Control de Acceso
+
+Un pilar fundamental de este proyecto es la seguridad implementada con **Spring Security**:
+
+1.  **Autenticación Obligatoria:** Solo los usuarios registrados en la base de datos pueden acceder a los recursos de las tareas.
+2.  **Propiedad de los Datos (Owner Check):** Las tareas están vinculadas directamente al usuario que las crea.
+3.  **Restricciones de Usuario:** Para garantizar la privacidad, un usuario solo puede:
+    * Visualizar sus propias tareas.
+    * Editar únicamente las tareas que él mismo creó.
+    * Eliminar solo sus tareas personales.
+4.  **Manejo de Excepciones:** Si un usuario intenta acceder, editar o borrar una tarea que pertenece a otro autor, el sistema bloquea la acción y lanza una excepción de seguridad (403 Forbidden).
+
+---
+
+## 🚀 Tecnologías Utilizadas
+
+* **Java 17+**
+* **Spring Boot** (Starter Web, Data JPA, Security)
+* **H2 Database** (Base de datos en memoria para desarrollo)
+* **Hibernate/JPA** (Mapeo objeto-relacional)
+* **Postman** (Para pruebas de los Endpoints)
+
+---
+
+## 📋 Requisitos Previos
+
+Para ejecutar este proyecto localmente, asegúrate de tener:
+* JDK 17 o superior.
+* Maven instalado.
+* Tu IDE favorito (IntelliJ IDEA, VS Code, Eclipse).
+
+---
+
+## 🛠️ Instalación y Configuración
+
+1.  Clona el repositorio:
+    ```bash
+    git clone [https://github.com/tu-usuario/TU-REPOSITORIO.git](https://github.com/tu-usuario/TU-REPOSITORIO.git)
+    ```
+2.  Importa el proyecto como un proyecto Maven.
+3.  Ejecuta la aplicación desde tu IDE o mediante la consola:
+    ```bash
+    mvn spring-boot:run
+    ```
+4.  La API estará disponible en: `http://localhost:9090`
+5.  Puedes acceder a la consola de H2 en: `http://localhost:9090/h2-console`
+
+---
+
+## 📚 Créditos
+Este proyecto ha sido desarrollado siguiendo las pautas de **OpenWebinars** bajo la instrucción de sus expertos en Java y Spring Boot.
