@@ -14,6 +14,7 @@ También se centra en otros aspectos como la seguridad de esta:
 * Dependiendo del usuario registrado en ese momento, las tareas aparecerán al nombre de cada usuario
 * Cada usuario solo y únicamente podrá:
    * Ver las tareas creadas por este
-   * Editar estas y borrarlas
+   * Editar tareas creadas por este
+   * Eliminar tareas creadas por este
      
   En caso de que el usuario intente acceder a tareas que no hayan sido creadas por él o borrar o editar estas, se lanzará una excepción.
