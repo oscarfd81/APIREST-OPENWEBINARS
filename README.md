@@ -53,21 +53,7 @@ Para ejecutar este proyecto localmente, asegúrate de tener:
 
 ---
 
-## 🛠️ Instalación y Configuración
 
-1.  Clona el repositorio:
-    ```bash
-    git clone [https://github.com/tu-usuario/TU-REPOSITORIO.git](https://github.com/tu-usuario/TU-REPOSITORIO.git)
-    ```
-2.  Importa el proyecto como un proyecto Maven.
-3.  Ejecuta la aplicación desde tu IDE o mediante la consola:
-    ```bash
-    mvn spring-boot:run
-    ```
-4.  La API estará disponible en: `http://localhost:9090`
-5.  Puedes acceder a la consola de H2 en: `http://localhost:9090/h2-console`
-
----
 
 ## 📚 Créditos
 Este proyecto ha sido desarrollado siguiendo las pautas de **OpenWebinars** bajo la instrucción de sus expertos en Java y Spring Boot.
