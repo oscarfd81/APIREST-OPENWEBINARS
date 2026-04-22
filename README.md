@@ -1,6 +1,6 @@
 # 🚀 API REST de Gestión de Tareas (To-Do List)
 
-Este repositorio contiene la implementación práctica de una API REST realizada como parte del curso **"Desarrollo de una aplicación web con Spring Boot"** y, específicamente, el módulo de **"Desarrollo de una API REST con Spring Boot"** de **OpenWebinars**.
+Este repositorio contiene la implementación práctica de una API REST realizada como parte del curso de **"Desarrollo de una API REST con Spring Boot"** de **OpenWebinars**.
 
 El objetivo del proyecto es gestionar tareas de forma eficiente, aplicando principios de seguridad avanzada y persistencia de datos.
 
