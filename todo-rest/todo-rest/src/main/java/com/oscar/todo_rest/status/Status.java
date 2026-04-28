@@ -2,6 +2,7 @@ package com.oscar.todo_rest.status;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.oscar.todo_rest.model.Task;
 
 import jakarta.persistence.Entity;
@@ -25,8 +26,9 @@ public class Status {
     @Id
     private long id;
     
-    private String type;
+    private String name;
 
     @OneToMany(mappedBy = "status")
+    @JsonIgnore
     private List<Task> tasks;
 }

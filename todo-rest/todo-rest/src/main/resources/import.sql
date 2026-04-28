@@ -10,15 +10,15 @@ INSERT INTO cat (id,name) VALUES(NEXTVAL('task_seq'), 'Amigos');
 INSERT INTO cat (id,name) VALUES(NEXTVAL('task_seq'), 'Familia');
 INSERT INTO cat (id,name) VALUES(NEXTVAL('task_seq'), 'Cumpleaños');
 
-INSERT INTO tagd (id,title) VALUES (NEXTVAL('tagd_seq'),'Urgente');
-INSERT INTO tagd (id,title) VALUES (NEXTVAL('tagd_seq'),'Importante');
-INSERT INTO tagd (id,title) VALUES (NEXTVAL('tagd_seq'),'Media Urgencia');
-INSERT INTO tagd (id,title) VALUES (NEXTVAL('tagd_seq'),'Baja Urgencia');
+INSERT INTO tagd (id,name) VALUES (NEXTVAL('tagd_seq'),'Urgente');
+INSERT INTO tagd (id,name) VALUES (NEXTVAL('tagd_seq'),'Importante');
+INSERT INTO tagd (id,name) VALUES (NEXTVAL('tagd_seq'),'Media Urgencia');
+INSERT INTO tagd (id,name) VALUES (NEXTVAL('tagd_seq'),'Baja Urgencia');
 
-INSERT INTO statu (id,type) VALUES(NEXTVAL('statu_seq'),'Hecho');
-INSERT INTO statu (id,type) VALUES(NEXTVAL('statu_seq'),'No hecho');
-INSERT INTO statu (id,type) VALUES(NEXTVAL('statu_seq'),'Pendiente');
-INSERT INTO statu (id,type) VALUES(NEXTVAL('statu_seq'),'En proceso');
+INSERT INTO statu (id,name) VALUES(NEXTVAL('statu_seq'),'Hecho');
+INSERT INTO statu (id,name) VALUES(NEXTVAL('statu_seq'),'No hecho');
+INSERT INTO statu (id,name) VALUES(NEXTVAL('statu_seq'),'Pendiente');
+INSERT INTO statu (id,name) VALUES(NEXTVAL('statu_seq'),'En proceso');
 
 INSERT INTO task (id, created_at, deadline, title, description) VALUES (NEXTVAL('task_seq'), CURRENT_TIMESTAMP, '2026-04-22 08:00:00', 'Ir al gimnasio', 'Rutina de pierna y 20 minutos de cardio');
 INSERT INTO task (id, created_at, deadline, title, description) VALUES (NEXTVAL('task_seq'), CURRENT_TIMESTAMP, '2026-04-22 10:30:00', 'Estudiar Java Spring', 'Ver el módulo de persistencia de datos y JPA');

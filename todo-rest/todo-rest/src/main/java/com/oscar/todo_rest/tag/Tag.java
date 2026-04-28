@@ -2,6 +2,7 @@ package com.oscar.todo_rest.tag;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.oscar.todo_rest.model.Task;
 
 import jakarta.persistence.*;
@@ -19,9 +20,10 @@ public class Tag {
     @GeneratedValue
     private Long id;
 
-    private String title;
+    private String name;
 
-    @ManyToMany(mappedBy = "tags")
+    @OneToMany(mappedBy = "tag")
+    @JsonIgnore
     private List<Task> tasks;
 }
 

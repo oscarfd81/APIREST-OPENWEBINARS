@@ -54,17 +54,17 @@ public class TaskService {
                 .orElseThrow(() -> new TaskNotFoundException(id));
     }
 
+
+    // GUARDAR CAMBIOS TAREA
     public Task save(EditTaskCommand cmd, User author) {
-        Category category = categoryRepository.findById(cmd.categoryId())
+        Category category = categoryRepository.findByName(cmd.categoryName())
                 .orElseThrow();
 
-        Status status = statusRepository.findById(cmd.statusId())
+        Status status = statusRepository.findByName(cmd.statusName())
                 .orElseThrow();
 
-        //  SI ES TRUE PUES "?" ; SI NO PUES ":"
-        List<Tag> tags = cmd.tagIds() != null
-                ? tagRepository.findAllById(cmd.tagIds())
-                : List.of();
+        Tag tag= tagRepository.findByName(cmd.tagName())
+                .orElseThrow();
 
         return taskRepository.save(
             Task.builder()
@@ -74,7 +74,7 @@ public class TaskService {
                 .author(author)
                 .category(category)
                 .status(status)
-                .tags(tags)
+                .tag(tag)
                 .updatedAt(LocalDateTime.now())
                 .build()
         );
@@ -83,30 +83,29 @@ public class TaskService {
     public Task edit(EditTaskCommand cmd, Long id) {
         return taskRepository.findById(id).map(t -> {
 
+            Category category = categoryRepository.findByName(cmd.categoryName())
+                .orElseThrow();
+
+            Status status = statusRepository.findByName(cmd.statusName())
+                    .orElseThrow();
+
+            Tag tag= tagRepository.findByName(cmd.tagName())
+                    .orElseThrow();
+
             t.setTitle(cmd.title());
             t.setDescription(cmd.description());
             t.setDeadline(cmd.deadline());
             t.setUpdatedAt(LocalDateTime.now());
-
-            Category category = categoryRepository.findById(cmd.categoryId())
-                    .orElseThrow();
-
-            Status status = statusRepository.findById(cmd.statusId())
-                    .orElseThrow();
-
-            List<Tag> tags = cmd.tagIds() != null
-                    ? tagRepository.findAllById(cmd.tagIds())
-                    : List.of();
-
             t.setCategory(category);
             t.setStatus(status);
-            t.setTags(tags);
+            t.setTag(tag);
 
             return taskRepository.save(t);
 
         }).orElseThrow(() -> new TaskNotFoundException(id));
     }
 
+    
     public void delete(Long id) {
         taskRepository.deleteById(id);
     }   

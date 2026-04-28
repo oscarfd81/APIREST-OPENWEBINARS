@@ -4,7 +4,6 @@ import com.oscar.todo_rest.model.Task;
 import com.oscar.todo_rest.users.NewUserResponse;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public record GetTaskDto(
         Long id,
@@ -16,7 +15,7 @@ public record GetTaskDto(
 
         String category,  
         String status,    
-        List<String> tags 
+        String tag
 ){
     public static GetTaskDto of(Task t) {
         return new GetTaskDto(
@@ -26,10 +25,9 @@ public record GetTaskDto(
                 t.getCreatedAt(),
                 t.getDeadline(),
                 NewUserResponse.of(t.getAuthor()),
-                
                 t.getCategory() != null ? t.getCategory().getName() : "VACIO",
-                t.getStatus() != null ? t.getStatus().getType() : "VACIO",
-                t.getTags() != null ? t.getTags().stream().map(tag -> tag.getTitle()).toList(): List.of()
+                t.getStatus() != null ? t.getStatus().getName() : "VACIO",
+                t.getTag() != null ? t.getTag().getName() : "VACIO"
         );
     }
 }
