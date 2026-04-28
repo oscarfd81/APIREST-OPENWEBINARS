@@ -2,14 +2,21 @@ package com.oscar.todo_rest.service;
 
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.oscar.todo_rest.category.Category;
+import com.oscar.todo_rest.category.CategoryRepository;
 import com.oscar.todo_rest.dto.EditTaskCommand;
 import com.oscar.todo_rest.error.TaskNotFoundException;
 import com.oscar.todo_rest.model.Task;
 import com.oscar.todo_rest.repos.TaskRepository;
+import com.oscar.todo_rest.status.Status;
+import com.oscar.todo_rest.status.StatusRepository;
+import com.oscar.todo_rest.tag.Tag;
+import com.oscar.todo_rest.tag.TagRepository;
 import com.oscar.todo_rest.users.User;
 
 @Service
@@ -17,6 +24,9 @@ import com.oscar.todo_rest.users.User;
 public class TaskService {
     
     private final TaskRepository taskRepository;
+    private final CategoryRepository categoryRepository;
+    private final StatusRepository statusRepository;
+    private final TagRepository tagRepository;
 
     public List<Task> findAll() {
         List<Task> result = taskRepository.findAll();
@@ -45,24 +55,56 @@ public class TaskService {
     }
 
     public Task save(EditTaskCommand cmd, User author) {
+        Category category = categoryRepository.findById(cmd.categoryId())
+                .orElseThrow();
+
+        Status status = statusRepository.findById(cmd.statusId())
+                .orElseThrow();
+
+        //  SI ES TRUE PUES "?" ; SI NO PUES ":"
+        List<Tag> tags = cmd.tagIds() != null
+                ? tagRepository.findAllById(cmd.tagIds())
+                : List.of();
+
         return taskRepository.save(
             Task.builder()
                 .title(cmd.title())
                 .description(cmd.description())
                 .deadline(cmd.deadline())
                 .author(author)
+                .category(category)
+                .status(status)
+                .tags(tags)
+                .updatedAt(LocalDateTime.now())
                 .build()
         );
     }
 
     public Task edit(EditTaskCommand cmd, Long id) {
         return taskRepository.findById(id).map(t -> {
-                    t.setTitle(cmd.title());
-                    t.setDescription(cmd.description());
-                    t.setDeadline(cmd.deadline());
-                    return taskRepository.save(t);
-                })
-                .orElseThrow(()-> new TaskNotFoundException(id));   
+
+            t.setTitle(cmd.title());
+            t.setDescription(cmd.description());
+            t.setDeadline(cmd.deadline());
+            t.setUpdatedAt(LocalDateTime.now());
+
+            Category category = categoryRepository.findById(cmd.categoryId())
+                    .orElseThrow();
+
+            Status status = statusRepository.findById(cmd.statusId())
+                    .orElseThrow();
+
+            List<Tag> tags = cmd.tagIds() != null
+                    ? tagRepository.findAllById(cmd.tagIds())
+                    : List.of();
+
+            t.setCategory(category);
+            t.setStatus(status);
+            t.setTags(tags);
+
+            return taskRepository.save(t);
+
+        }).orElseThrow(() -> new TaskNotFoundException(id));
     }
 
     public void delete(Long id) {

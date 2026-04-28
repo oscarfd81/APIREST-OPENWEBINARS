@@ -1,13 +1,18 @@
 package com.oscar.todo_rest.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.oscar.todo_rest.users.User;
+import com.oscar.todo_rest.category.Category;
+import com.oscar.todo_rest.status.Status;
+import com.oscar.todo_rest.tag.Tag;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
 
@@ -33,7 +38,19 @@ public class Task {
 
     private LocalDateTime deadline;
 
+    private LocalDateTime updatedAt;
+
     @ManyToOne
     private User author;
 
+    @ManyToOne
+    private Category category;
+
+    @ManyToMany
+    private List<Tag> tags;
+
+    @ManyToOne
+    private Status status;
 }
+
+
