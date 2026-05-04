@@ -1,5 +1,9 @@
 /*TUVE QUE PONER NEXTVAL DEBIDO A QUE COMO EN EL MODEL LO DECLARE COMO GENERATEDVALUE,USO LA SECUENCIA GENERADA PARA GENERAR EL ID AUTOMATICAMENTE POR CADA NUEVA TAREA*/
-INSERT INTO user_entity (id, email, username, password, is_admin) VALUES (NEXTVAL('user_entity_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true);
+INSERT INTO user_entity (id, email, username, password, is_admin,is_gestor) VALUES (NEXTVAL('user_entity_seq'), 'admin@gmail.com', 'admin', '{noop}1234', true,false);
+
+INSERT INTO user_entity (id, email, username, password, is_admin,is_gestor) VALUES (NEXTVAL('user_entity_seq'), 'gestor@gmail.com', 'gestor', '{noop}1234', false,true);
+
+INSERT INTO user_entity (id, email, username, password, is_admin,is_gestor) VALUES (NEXTVAL('user_entity_seq'), 'user@gmail.com', 'user', '{noop}1234', false,false);
 
 INSERT INTO cat (id,name) VALUES(NEXTVAL('task_seq'), 'Trabajo');
 INSERT INTO cat (id,name) VALUES(NEXTVAL('task_seq'), 'Estudio');

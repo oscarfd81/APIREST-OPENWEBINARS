@@ -3693,3 +3693,592 @@ UPDATE task SET author_id = CURRVAL('user_entity_seq') [90148-240]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
 	at com.oscar.todo_rest.TodoRestApplication.main(TodoRestApplication.java:10)
+2026-05-05 00:27:55.796755+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "drop table if exists [*]user cascade "; se esperaba "identifier"
+Syntax error in SQL statement "drop table if exists [*]user cascade "; expected "identifier"; SQL statement:
+drop table if exists user cascade  [42001-240]
+2026-05-05 00:27:55.844591+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "create table [*]user (is_admin boolean not null, is_gestor boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id))"; se esperaba "identifier"
+Syntax error in SQL statement "create table [*]user (is_admin boolean not null, is_gestor boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id))"; expected "identifier"; SQL statement:
+create table user (is_admin boolean not null, is_gestor boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id)) [42001-240]
+2026-05-05 00:27:55.848985+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references [*]user"; se esperaba "identifier"
+Syntax error in SQL statement "alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references [*]user"; expected "identifier"; SQL statement:
+alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references user [42001-240]
+2026-05-05 00:27:55.898084+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO [*]user (id, email, username, password, is_admin) VALUES (NEXTVAL('user_entity_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true)"; se esperaba "identifier"
+Syntax error in SQL statement "INSERT INTO [*]user (id, email, username, password, is_admin) VALUES (NEXTVAL('user_entity_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true)"; expected "identifier"; SQL statement:
+INSERT INTO user (id, email, username, password, is_admin) VALUES (NEXTVAL('user_entity_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true) [42001-240]
+2026-05-05 00:27:55.933583+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Current value of sequence "PUBLIC.USER_ENTITY_SEQ" is not yet defined in this session; SQL statement:
+UPDATE task SET author_id = CURRVAL('user_entity_seq') [90148-240]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.engine.SessionLocal.getCurrentValueFor(SessionLocal.java:1106)
+	at org.h2.expression.function.CompatibilitySequenceValueFunction.getValue(CompatibilitySequenceValueFunction.java:67)
+	at org.h2.expression.function.Function1_2.getValue(Function1_2.java:39)
+	at org.h2.command.dml.SetClauseList$SetSimple.update(SetClauseList.java:394)
+	at org.h2.command.dml.SetClauseList$SetAction.update(SetClauseList.java:337)
+	at org.h2.command.dml.SetClauseList.prepareUpdate(SetClauseList.java:138)
+	at org.h2.command.dml.Update.update(Update.java:70)
+	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:77)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
+	at org.h2.command.Command.executeUpdate(Command.java:306)
+	at org.h2.command.Command.executeUpdate(Command.java:250)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:218)
+	at org.hibernate.tool.schema.internal.Helper.applyScript(Helper.java:240)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportFiles(AbstractSchemaPopulator.java:164)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportFiles(AbstractSchemaPopulator.java:149)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportSources(AbstractSchemaPopulator.java:55)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:163)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:121)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:97)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:239)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(Unknown Source)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.oscar.todo_rest.TodoRestApplication.main(TodoRestApplication.java:10)
+2026-05-05 00:28:03.131158+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; se esperaba "identifier"
+Syntax error in SQL statement "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; expected "identifier"; SQL statement:
+select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from user u1_0 where u1_0.username=? fetch first ? rows only [42001-240]
+2026-05-05 00:30:12.302340+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "drop table if exists [*]user cascade "; se esperaba "identifier"
+Syntax error in SQL statement "drop table if exists [*]user cascade "; expected "identifier"; SQL statement:
+drop table if exists user cascade  [42001-240]
+2026-05-05 00:30:12.351675+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "create table [*]user (is_admin boolean not null, is_gestor boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id))"; se esperaba "identifier"
+Syntax error in SQL statement "create table [*]user (is_admin boolean not null, is_gestor boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id))"; expected "identifier"; SQL statement:
+create table user (is_admin boolean not null, is_gestor boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id)) [42001-240]
+2026-05-05 00:30:12.354655+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references [*]user"; se esperaba "identifier"
+Syntax error in SQL statement "alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references [*]user"; expected "identifier"; SQL statement:
+alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references user [42001-240]
+2026-05-05 00:30:12.405237+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO [*]user (id, email, username, password, is_admin,is_gestor) VALUES (NEXTVAL('user_entity_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true,false)"; se esperaba "identifier"
+Syntax error in SQL statement "INSERT INTO [*]user (id, email, username, password, is_admin,is_gestor) VALUES (NEXTVAL('user_entity_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true,false)"; expected "identifier"; SQL statement:
+INSERT INTO user (id, email, username, password, is_admin,is_gestor) VALUES (NEXTVAL('user_entity_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true,false) [42001-240]
+2026-05-05 00:30:12.435358+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Current value of sequence "PUBLIC.USER_ENTITY_SEQ" is not yet defined in this session; SQL statement:
+UPDATE task SET author_id = CURRVAL('user_entity_seq') [90148-240]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.engine.SessionLocal.getCurrentValueFor(SessionLocal.java:1106)
+	at org.h2.expression.function.CompatibilitySequenceValueFunction.getValue(CompatibilitySequenceValueFunction.java:67)
+	at org.h2.expression.function.Function1_2.getValue(Function1_2.java:39)
+	at org.h2.command.dml.SetClauseList$SetSimple.update(SetClauseList.java:394)
+	at org.h2.command.dml.SetClauseList$SetAction.update(SetClauseList.java:337)
+	at org.h2.command.dml.SetClauseList.prepareUpdate(SetClauseList.java:138)
+	at org.h2.command.dml.Update.update(Update.java:70)
+	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:77)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
+	at org.h2.command.Command.executeUpdate(Command.java:306)
+	at org.h2.command.Command.executeUpdate(Command.java:250)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:218)
+	at org.hibernate.tool.schema.internal.Helper.applyScript(Helper.java:240)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportFiles(AbstractSchemaPopulator.java:164)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportFiles(AbstractSchemaPopulator.java:149)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportSources(AbstractSchemaPopulator.java:55)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:163)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:121)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:97)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:239)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(Unknown Source)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.oscar.todo_rest.TodoRestApplication.main(TodoRestApplication.java:10)
+2026-05-05 00:30:17.282867+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; se esperaba "identifier"
+Syntax error in SQL statement "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; expected "identifier"; SQL statement:
+select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from user u1_0 where u1_0.username=? fetch first ? rows only [42001-240]
+2026-05-05 00:30:58.714366+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "drop table if exists [*]user cascade "; se esperaba "identifier"
+Syntax error in SQL statement "drop table if exists [*]user cascade "; expected "identifier"; SQL statement:
+drop table if exists user cascade  [42001-240]
+2026-05-05 00:30:58.774455+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "create table [*]user (is_admin boolean not null, is_gestor boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id))"; se esperaba "identifier"
+Syntax error in SQL statement "create table [*]user (is_admin boolean not null, is_gestor boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id))"; expected "identifier"; SQL statement:
+create table user (is_admin boolean not null, is_gestor boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id)) [42001-240]
+2026-05-05 00:30:58.777005+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references [*]user"; se esperaba "identifier"
+Syntax error in SQL statement "alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references [*]user"; expected "identifier"; SQL statement:
+alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references user [42001-240]
+2026-05-05 00:30:58.834112+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO [*]user (id, email, username, password,isAdmin,isGestor) VALUES (NEXTVAL('user_entity_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true,false)"; se esperaba "identifier"
+Syntax error in SQL statement "INSERT INTO [*]user (id, email, username, password,isAdmin,isGestor) VALUES (NEXTVAL('user_entity_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true,false)"; expected "identifier"; SQL statement:
+INSERT INTO user (id, email, username, password,isAdmin,isGestor) VALUES (NEXTVAL('user_entity_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true,false) [42001-240]
+2026-05-05 00:30:58.898837+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Current value of sequence "PUBLIC.USER_ENTITY_SEQ" is not yet defined in this session; SQL statement:
+UPDATE task SET author_id = CURRVAL('user_entity_seq') [90148-240]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.engine.SessionLocal.getCurrentValueFor(SessionLocal.java:1106)
+	at org.h2.expression.function.CompatibilitySequenceValueFunction.getValue(CompatibilitySequenceValueFunction.java:67)
+	at org.h2.expression.function.Function1_2.getValue(Function1_2.java:39)
+	at org.h2.command.dml.SetClauseList$SetSimple.update(SetClauseList.java:394)
+	at org.h2.command.dml.SetClauseList$SetAction.update(SetClauseList.java:337)
+	at org.h2.command.dml.SetClauseList.prepareUpdate(SetClauseList.java:138)
+	at org.h2.command.dml.Update.update(Update.java:70)
+	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:77)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
+	at org.h2.command.Command.executeUpdate(Command.java:306)
+	at org.h2.command.Command.executeUpdate(Command.java:250)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:218)
+	at org.hibernate.tool.schema.internal.Helper.applyScript(Helper.java:240)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportFiles(AbstractSchemaPopulator.java:164)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportFiles(AbstractSchemaPopulator.java:149)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportSources(AbstractSchemaPopulator.java:55)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:163)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:121)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:97)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:239)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(Unknown Source)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.oscar.todo_rest.TodoRestApplication.main(TodoRestApplication.java:10)
+2026-05-05 00:31:02.862769+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; se esperaba "identifier"
+Syntax error in SQL statement "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; expected "identifier"; SQL statement:
+select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from user u1_0 where u1_0.username=? fetch first ? rows only [42001-240]
+2026-05-05 00:31:04.480036+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; se esperaba "identifier"
+Syntax error in SQL statement "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; expected "identifier"; SQL statement:
+select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from user u1_0 where u1_0.username=? fetch first ? rows only [42001-240]
+2026-05-05 00:31:38.805656+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "drop table if exists [*]user cascade "; se esperaba "identifier"
+Syntax error in SQL statement "drop table if exists [*]user cascade "; expected "identifier"; SQL statement:
+drop table if exists user cascade  [42001-240]
+2026-05-05 00:31:38.868582+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "create table [*]user (is_admin boolean not null, is_gestor boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id))"; se esperaba "identifier"
+Syntax error in SQL statement "create table [*]user (is_admin boolean not null, is_gestor boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id))"; expected "identifier"; SQL statement:
+create table user (is_admin boolean not null, is_gestor boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id)) [42001-240]
+2026-05-05 00:31:38.873590+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references [*]user"; se esperaba "identifier"
+Syntax error in SQL statement "alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references [*]user"; expected "identifier"; SQL statement:
+alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references user [42001-240]
+2026-05-05 00:31:38.941334+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO [*]user(id, email, username, password, is_admin) VALUES (NEXTVAL('user_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true)"; se esperaba "identifier"
+Syntax error in SQL statement "INSERT INTO [*]user(id, email, username, password, is_admin) VALUES (NEXTVAL('user_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true)"; expected "identifier"; SQL statement:
+INSERT INTO user(id, email, username, password, is_admin) VALUES (NEXTVAL('user_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true) [42001-240]
+2026-05-05 00:31:38.998395+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Current value of sequence "PUBLIC.USER_ENTITY_SEQ" is not yet defined in this session; SQL statement:
+UPDATE task SET author_id = CURRVAL('user_entity_seq') [90148-240]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.engine.SessionLocal.getCurrentValueFor(SessionLocal.java:1106)
+	at org.h2.expression.function.CompatibilitySequenceValueFunction.getValue(CompatibilitySequenceValueFunction.java:67)
+	at org.h2.expression.function.Function1_2.getValue(Function1_2.java:39)
+	at org.h2.command.dml.SetClauseList$SetSimple.update(SetClauseList.java:394)
+	at org.h2.command.dml.SetClauseList$SetAction.update(SetClauseList.java:337)
+	at org.h2.command.dml.SetClauseList.prepareUpdate(SetClauseList.java:138)
+	at org.h2.command.dml.Update.update(Update.java:70)
+	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:77)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
+	at org.h2.command.Command.executeUpdate(Command.java:306)
+	at org.h2.command.Command.executeUpdate(Command.java:250)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:218)
+	at org.hibernate.tool.schema.internal.Helper.applyScript(Helper.java:240)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportFiles(AbstractSchemaPopulator.java:164)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportFiles(AbstractSchemaPopulator.java:149)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportSources(AbstractSchemaPopulator.java:55)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:163)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:121)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:97)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:239)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(Unknown Source)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.oscar.todo_rest.TodoRestApplication.main(TodoRestApplication.java:10)
+2026-05-05 00:31:43.713138+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; se esperaba "identifier"
+Syntax error in SQL statement "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; expected "identifier"; SQL statement:
+select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from user u1_0 where u1_0.username=? fetch first ? rows only [42001-240]
+2026-05-05 00:32:25.279687+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "drop table if exists [*]user cascade "; se esperaba "identifier"
+Syntax error in SQL statement "drop table if exists [*]user cascade "; expected "identifier"; SQL statement:
+drop table if exists user cascade  [42001-240]
+2026-05-05 00:32:25.327722+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "create table [*]user (is_admin boolean not null, is_gestor boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id))"; se esperaba "identifier"
+Syntax error in SQL statement "create table [*]user (is_admin boolean not null, is_gestor boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id))"; expected "identifier"; SQL statement:
+create table user (is_admin boolean not null, is_gestor boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id)) [42001-240]
+2026-05-05 00:32:25.329704+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references [*]user"; se esperaba "identifier"
+Syntax error in SQL statement "alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references [*]user"; expected "identifier"; SQL statement:
+alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references user [42001-240]
+2026-05-05 00:32:25.377933+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO [*]user(id, email, username, password, is_admin,is_gestor) VALUES (NEXTVAL('user_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true,false)"; se esperaba "identifier"
+Syntax error in SQL statement "INSERT INTO [*]user(id, email, username, password, is_admin,is_gestor) VALUES (NEXTVAL('user_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true,false)"; expected "identifier"; SQL statement:
+INSERT INTO user(id, email, username, password, is_admin,is_gestor) VALUES (NEXTVAL('user_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true,false) [42001-240]
+2026-05-05 00:32:25.401740+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Current value of sequence "PUBLIC.USER_ENTITY_SEQ" is not yet defined in this session; SQL statement:
+UPDATE task SET author_id = CURRVAL('user_entity_seq') [90148-240]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.engine.SessionLocal.getCurrentValueFor(SessionLocal.java:1106)
+	at org.h2.expression.function.CompatibilitySequenceValueFunction.getValue(CompatibilitySequenceValueFunction.java:67)
+	at org.h2.expression.function.Function1_2.getValue(Function1_2.java:39)
+	at org.h2.command.dml.SetClauseList$SetSimple.update(SetClauseList.java:394)
+	at org.h2.command.dml.SetClauseList$SetAction.update(SetClauseList.java:337)
+	at org.h2.command.dml.SetClauseList.prepareUpdate(SetClauseList.java:138)
+	at org.h2.command.dml.Update.update(Update.java:70)
+	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:77)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
+	at org.h2.command.Command.executeUpdate(Command.java:306)
+	at org.h2.command.Command.executeUpdate(Command.java:250)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:218)
+	at org.hibernate.tool.schema.internal.Helper.applyScript(Helper.java:240)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportFiles(AbstractSchemaPopulator.java:164)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportFiles(AbstractSchemaPopulator.java:149)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportSources(AbstractSchemaPopulator.java:55)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:163)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:121)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:97)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:239)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(Unknown Source)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.oscar.todo_rest.TodoRestApplication.main(TodoRestApplication.java:10)
+2026-05-05 00:32:29.034046+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; se esperaba "identifier"
+Syntax error in SQL statement "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; expected "identifier"; SQL statement:
+select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.is_gestor,u1_0.password,u1_0.username from user u1_0 where u1_0.username=? fetch first ? rows only [42001-240]
+2026-05-05 00:32:50.453159+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "drop table if exists [*]user cascade "; se esperaba "identifier"
+Syntax error in SQL statement "drop table if exists [*]user cascade "; expected "identifier"; SQL statement:
+drop table if exists user cascade  [42001-240]
+2026-05-05 00:32:50.489986+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "create table [*]user (is_admin boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id))"; se esperaba "identifier"
+Syntax error in SQL statement "create table [*]user (is_admin boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id))"; expected "identifier"; SQL statement:
+create table user (is_admin boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id)) [42001-240]
+2026-05-05 00:32:50.492984+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references [*]user"; se esperaba "identifier"
+Syntax error in SQL statement "alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references [*]user"; expected "identifier"; SQL statement:
+alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references user [42001-240]
+2026-05-05 00:32:50.518565+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO [*]user(id, email, username, password, is_admin) VALUES (NEXTVAL('user_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true)"; se esperaba "identifier"
+Syntax error in SQL statement "INSERT INTO [*]user(id, email, username, password, is_admin) VALUES (NEXTVAL('user_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true)"; expected "identifier"; SQL statement:
+INSERT INTO user(id, email, username, password, is_admin) VALUES (NEXTVAL('user_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true) [42001-240]
+2026-05-05 00:32:50.549535+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Current value of sequence "PUBLIC.USER_ENTITY_SEQ" is not yet defined in this session; SQL statement:
+UPDATE task SET author_id = CURRVAL('user_entity_seq') [90148-240]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.engine.SessionLocal.getCurrentValueFor(SessionLocal.java:1106)
+	at org.h2.expression.function.CompatibilitySequenceValueFunction.getValue(CompatibilitySequenceValueFunction.java:67)
+	at org.h2.expression.function.Function1_2.getValue(Function1_2.java:39)
+	at org.h2.command.dml.SetClauseList$SetSimple.update(SetClauseList.java:394)
+	at org.h2.command.dml.SetClauseList$SetAction.update(SetClauseList.java:337)
+	at org.h2.command.dml.SetClauseList.prepareUpdate(SetClauseList.java:138)
+	at org.h2.command.dml.Update.update(Update.java:70)
+	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:77)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
+	at org.h2.command.Command.executeUpdate(Command.java:306)
+	at org.h2.command.Command.executeUpdate(Command.java:250)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:218)
+	at org.hibernate.tool.schema.internal.Helper.applyScript(Helper.java:240)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportFiles(AbstractSchemaPopulator.java:164)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportFiles(AbstractSchemaPopulator.java:149)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportSources(AbstractSchemaPopulator.java:55)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:163)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:121)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:97)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:239)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(Unknown Source)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.oscar.todo_rest.TodoRestApplication.main(TodoRestApplication.java:10)
+2026-05-05 00:33:09.016061+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; se esperaba "identifier"
+Syntax error in SQL statement "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; expected "identifier"; SQL statement:
+select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.password,u1_0.username from user u1_0 where u1_0.username=? fetch first ? rows only [42001-240]
+2026-05-05 00:33:22.875226+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; se esperaba "identifier"
+Syntax error in SQL statement "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; expected "identifier"; SQL statement:
+select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.password,u1_0.username from user u1_0 where u1_0.username=? fetch first ? rows only [42001-240]
+2026-05-05 00:33:31.641456+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "drop table if exists [*]user cascade "; se esperaba "identifier"
+Syntax error in SQL statement "drop table if exists [*]user cascade "; expected "identifier"; SQL statement:
+drop table if exists user cascade  [42001-240]
+2026-05-05 00:33:31.679742+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "create table [*]user (is_admin boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id))"; se esperaba "identifier"
+Syntax error in SQL statement "create table [*]user (is_admin boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id))"; expected "identifier"; SQL statement:
+create table user (is_admin boolean not null, id bigint not null, email varchar(255), password varchar(255), username varchar(255), primary key (id)) [42001-240]
+2026-05-05 00:33:31.683706+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references [*]user"; se esperaba "identifier"
+Syntax error in SQL statement "alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references [*]user"; expected "identifier"; SQL statement:
+alter table if exists task add constraint FK1483yqi55eiwrtb2bfjmjp02t foreign key (author_id) references user [42001-240]
+2026-05-05 00:33:31.730254+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO [*]user(id, email, username, password, is_admin) VALUES (NEXTVAL('user_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true)"; se esperaba "identifier"
+Syntax error in SQL statement "INSERT INTO [*]user(id, email, username, password, is_admin) VALUES (NEXTVAL('user_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true)"; expected "identifier"; SQL statement:
+INSERT INTO user(id, email, username, password, is_admin) VALUES (NEXTVAL('user_seq'), 'oscar@gmail.com', 'oscar_fdez', '{noop}1234', true) [42001-240]
+2026-05-05 00:33:31.759863+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Current value of sequence "PUBLIC.USER_SEQ" is not yet defined in this session; SQL statement:
+UPDATE task SET author_id = CURRVAL('user_seq') [90148-240]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.engine.SessionLocal.getCurrentValueFor(SessionLocal.java:1106)
+	at org.h2.expression.function.CompatibilitySequenceValueFunction.getValue(CompatibilitySequenceValueFunction.java:67)
+	at org.h2.expression.function.Function1_2.getValue(Function1_2.java:39)
+	at org.h2.command.dml.SetClauseList$SetSimple.update(SetClauseList.java:394)
+	at org.h2.command.dml.SetClauseList$SetAction.update(SetClauseList.java:337)
+	at org.h2.command.dml.SetClauseList.prepareUpdate(SetClauseList.java:138)
+	at org.h2.command.dml.Update.update(Update.java:70)
+	at org.h2.command.dml.DataChangeStatement.update(DataChangeStatement.java:77)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
+	at org.h2.command.Command.executeUpdate(Command.java:306)
+	at org.h2.command.Command.executeUpdate(Command.java:250)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:76)
+	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:218)
+	at org.hibernate.tool.schema.internal.Helper.applyScript(Helper.java:240)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportFiles(AbstractSchemaPopulator.java:164)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportFiles(AbstractSchemaPopulator.java:149)
+	at org.hibernate.tool.schema.internal.AbstractSchemaPopulator.applyImportSources(AbstractSchemaPopulator.java:55)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:163)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:121)
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:97)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:239)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101)
+	at java.base/java.util.HashMap.forEach(Unknown Source)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323)
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.oscar.todo_rest.TodoRestApplication.main(TodoRestApplication.java:10)
+2026-05-05 00:33:36.791234+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; se esperaba "identifier"
+Syntax error in SQL statement "select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.password,u1_0.username from [*]user u1_0 where u1_0.username=? fetch first ? rows only"; expected "identifier"; SQL statement:
+select u1_0.id,u1_0.email,u1_0.is_admin,u1_0.password,u1_0.username from user u1_0 where u1_0.username=? fetch first ? rows only [42001-240]

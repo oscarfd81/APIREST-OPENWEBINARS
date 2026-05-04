@@ -32,8 +32,8 @@ public class User implements UserDetails {
 
     @Builder.Default
     private boolean isAdmin = false;
+    
     @Builder.Default
-    // NUEVOS POSIBLES ROLES
     private boolean isGestor = false;
 
     @Override
