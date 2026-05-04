@@ -36,9 +36,12 @@ public class User implements UserDetails {
     @Builder.Default
     private boolean isGestor = false;
 
+    @Builder.Default
+    private boolean isUser = false;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        String role = "ROLE_" + ((isAdmin) ? "ADMIN" : "USER");
+        String role = "ROLE_" + ((isAdmin) ? "ADMIN" : (isGestor)?"GESTOR":"USER");
         return List.of(new SimpleGrantedAuthority(role));
     }
 }
