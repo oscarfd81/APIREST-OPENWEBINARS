@@ -31,7 +31,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class TaskController {
 
     private final TaskService taskService;
-
+    // COMANDO HASANYROLE SIRVE PARA COMPROBAR SI EL USUARIO TIENE ESOS ROLES
+    @PreAuthorize("hasAnyRole('USER')")
     @GetMapping
     public List<GetTaskDto> getAll(
         @AuthenticationPrincipal User author
@@ -43,6 +44,7 @@ public class TaskController {
     }
 
     // Si el usuario autenticado es el autor de la tarea, se permite el acceso a los detalles de la tarea, si no se lanza una excepción
+    @PreAuthorize("hasAnyRole('USER')")
     @PostAuthorize("""
         returnObject.author.username == authentication.principal.username
     """)
@@ -52,26 +54,30 @@ public class TaskController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('USER')")
     public ResponseEntity<GetTaskDto> create(
         @RequestBody EditTaskCommand cmd,
         // Con esto recuperamos el autor registrado
         @AuthenticationPrincipal User author) {
         return ResponseEntity.status(HttpStatus.CREATED).body(GetTaskDto.of(taskService.save(cmd, author)));
     }   
+
     
     // Si el autor de la tarea coincide con el usuario autenticado, se permite la edición
-    @PreAuthorize("""
+    /*@PreAuthorize("""
         @ownerCheck.check(#id, authentication.principal.getId())
-    """)
+    """)*/
+    @PreAuthorize("hasAnyRole('USER')")
     @PutMapping("/{id}")
     public GetTaskDto edit(@RequestBody EditTaskCommand cmd, @PathVariable Long id) {
         return GetTaskDto.of(taskService.edit(cmd, id));
     }   
 
     // Si el autor de la tarea coincide con el usuario autenticado, se permite la eliminación
-    @PreAuthorize("""
+    /*@PreAuthorize("""
         @ownerCheck.check(#id, authentication.principal.getId())
-    """)
+    """)*/
+    @PreAuthorize("hasAnyRole('USER')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) 
     {
