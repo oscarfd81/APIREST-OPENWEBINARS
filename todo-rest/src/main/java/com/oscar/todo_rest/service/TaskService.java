@@ -99,7 +99,7 @@ public class TaskService {
         taskRepository.deleteById(id);
     }   
 
-    // BUSCAR POR TAG
+    // BUSCAR POR TAG -- ME INVENTO EXCEPCIONES PORQUE NO TENGO HECHAS COMO EN OTROS CASOS
     public List<Task> findByTag(String nameTag) {
         Tag tag= tagRepository.findByName(nameTag).orElseThrow(()-> new RuntimeException( "Tag not found"));
 
@@ -113,5 +113,17 @@ public class TaskService {
 
     }
 
+    // BUSCAR POR CATEGORIA -- ME INVENTO EXCEPCIONES PORQUE NO TENGO HECHAS COMO EN OTROS CASOS
+    public List <Task> findByCategory(String categoryName){
+        Category cat= categoryRepository.findByName(categoryName).orElseThrow(()-> new RuntimeException( "Category not found"));
+        
+        List <Task> listTask= taskRepository.findByCategory(cat);
+
+        if(listTask.isEmpty()){
+            throw new RuntimeException("Tasks with these Category not found");
+        } else{
+            return listTask;
+        }
+    }
     
 }

@@ -1,3 +1,5 @@
+# ~~FUNCIONALIDADES MODEL Y DTO~~
+
 ~~Fecha límite de finalización (deadline)~~
 
 ~~Posibilidad de asignar múltiples categorías a una misma tarea~~
@@ -12,10 +14,11 @@
 
 ~~Indicador de importancia o tarea destacada~~
 
+---
 
-3.Endpoints
+# ENDPOINTS (CONTROLLER -> SERVICE -> REPOSITORY)
 
-3.1.Admininstrador
+### 3.1.Admininstrador
 
 Promocionar usuario a gestor
 
@@ -25,11 +28,13 @@ CRUD Usuario
 
 ~~CRUD categoría~~
 
-~~3.2.Gestor~~
+
+### ~~3.2.Gestor~~
 
 ~~CRUD categoría~~  => REVISAR EDITAR
 
-3.3.Usuario
+
+### 3.3.Usuario
 
 ~~CRUD Tarea~~
 
@@ -37,12 +42,12 @@ CRUD Usuario
 
 ~~Listar categorías~~
 
+~~Dashboard: Información sobre tareas (por categoría/tag/vencidas/creadas/....)~~
+
+~~Buscar tareas con tags seleccionados~~
+
 Eliminar Tags a tareas creadas
 
 Asignar Tags a tareas creadas
 
-~~Buscar tareas con tags seleccionados~~
-
 Cambiar contraseña
-
-Dashboard: Información sobre tareas (por categoría/tag/vencidas/creadas/....)
