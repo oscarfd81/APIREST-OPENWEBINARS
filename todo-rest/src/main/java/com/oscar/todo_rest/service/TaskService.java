@@ -110,7 +110,6 @@ public class TaskService {
         } else{
             return listTask;
         }
-
     }
 
     // BUSCAR POR CATEGORIA -- ME INVENTO EXCEPCIONES PORQUE NO TENGO HECHAS COMO EN OTROS CASOS
