@@ -95,15 +95,17 @@ public class TaskController {
     }
 
     // ASIGNAR UN TAG A TASK
+    @PreAuthorize("hasAnyRole('USER')")
     @PutMapping("/{id}/tag")
     public Task assignTag(@PathVariable Long id, @RequestParam String tagName) {
         return taskService.assignTagToTask(id, tagName);
     }
 
     // ELIMINAR TAG DE UN TASK
+    @PreAuthorize("hasAnyRole('USER')")
     @PutMapping("/{id}/tag/remove")
     public Task removeTag(@PathVariable Long id) {
         return taskService.removeTagFromTask(id);
     }
-    
+
 }

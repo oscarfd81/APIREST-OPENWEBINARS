@@ -44,8 +44,8 @@ CRUD Usuario
 
 ~~Buscar tareas con tags seleccionados~~
 
-Eliminar Tags a tareas creadas
+~~Eliminar Tags a tareas creadas~~
 
-Asignar Tags a tareas creadas
+~~Asignar Tags a tareas creadas~~
 
 Cambiar contraseña
