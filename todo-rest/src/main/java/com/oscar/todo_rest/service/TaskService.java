@@ -99,5 +99,19 @@ public class TaskService {
         taskRepository.deleteById(id);
     }   
 
+    // BUSCAR POR TAG
+    public List<Task> findByTag(String nameTag) {
+        Tag tag= tagRepository.findByName(nameTag).orElseThrow(()-> new RuntimeException( "Tag not found"));
 
+        List <Task> listTask = taskRepository.findByTag(tag);
+
+        if (listTask.isEmpty()) {
+            throw new RuntimeException("Tasks with these TagName not found");
+        } else{
+            return listTask;
+        }
+
+    }
+
+    
 }

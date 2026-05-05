@@ -8,4 +8,5 @@ import com.oscar.todo_rest.model.Tag;
 
 public interface TagRepository extends JpaRepository<Tag, Long> {
     Optional<Tag> findByName(String Name);
+
 }

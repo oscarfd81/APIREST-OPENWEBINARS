@@ -61,7 +61,7 @@ public class TaskController {
         @AuthenticationPrincipal User author) {
         return ResponseEntity.status(HttpStatus.CREATED).body(GetTaskDto.of(taskService.save(cmd, author)));
     }   
-
+ 
     
     // Si el autor de la tarea coincide con el usuario autenticado, se permite la edición
     /*@PreAuthorize("""
@@ -85,4 +85,11 @@ public class TaskController {
         return ResponseEntity.noContent().build();
     }
     
+
+    // DEVUELVE LISTA CON TASKS CON ESE TAGNAME
+    @PreAuthorize("hasAnyRole('USER')")
+    @GetMapping("/tag/{tagName}")
+    public List <Task> getByTagName(@PathVariable String tagName) {
+        return taskService.findByTag(tagName);
+    }
 }

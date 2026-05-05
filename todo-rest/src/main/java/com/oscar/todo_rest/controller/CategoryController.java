@@ -18,7 +18,7 @@ public class CategoryController {
     }
 
     // COMANDO HASANYROLE SIRVE PARA COMPROBAR SI EL USUARIO TIENE ESOS ROLES
-    @PreAuthorize("hasAnyRole('ADMIN', 'GESTOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'GESTOR','USER')")
     @GetMapping
     public List<Category> getAll() {
         return categoryRepository.findAll();
