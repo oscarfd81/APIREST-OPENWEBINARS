@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.oscar.todo_rest.service.TaskService;
 import com.oscar.todo_rest.users.User;
@@ -92,4 +93,17 @@ public class TaskController {
     public List <Task> getByTagName(@PathVariable String tagName) {
         return taskService.findByTag(tagName);
     }
+
+    // ASIGNAR UN TAG A TASK
+    @PutMapping("/{id}/tag")
+    public Task assignTag(@PathVariable Long id, @RequestParam String tagName) {
+        return taskService.assignTagToTask(id, tagName);
+    }
+
+    // ELIMINAR TAG DE UN TASK
+    @PutMapping("/{id}/tag/remove")
+    public Task removeTag(@PathVariable Long id) {
+        return taskService.removeTagFromTask(id);
+    }
+    
 }

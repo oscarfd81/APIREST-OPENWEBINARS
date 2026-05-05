@@ -125,4 +125,26 @@ public class TaskService {
         }
     }
     
+    // METODO PARA ASIGNAR TAG A UNA TAREA
+    public Task assignTagToTask(Long taskId, String tagName) {
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+
+        Tag tag = tagRepository.findByName(tagName)
+                .orElseThrow(() -> new RuntimeException("Tag not found"));
+
+        task.setTag(tag);
+
+        return taskRepository.save(task);
+    }
+
+    // METODO PARA ASIGNAR TAG A UNA TAREA
+    public Task removeTagFromTask(Long taskId) {
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+
+            task.setTag(null);
+
+        return taskRepository.save(task);
+    }
 }

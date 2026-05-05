@@ -28,11 +28,9 @@ CRUD Usuario
 
 ~~CRUD categoría~~
 
-
 ### ~~3.2.Gestor~~
 
 ~~CRUD categoría~~  => REVISAR EDITAR
-
 
 ### 3.3.Usuario
 
